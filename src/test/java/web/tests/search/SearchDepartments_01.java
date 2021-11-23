@@ -58,7 +58,7 @@ public class SearchDepartments_01 extends TestBase {
 			searchBar.searchDepartments("Books", keyword);
 			
 			// If no results message display
-			String expectNoResultMessage = "No results for " + keyword + " in Books";
+			String expectNoResultMessage = "No results for";
 									
 			boolean check = searchResults.checkIfNoResultsMessageDisplay(expectNoResultMessage);
 			
@@ -87,9 +87,6 @@ public class SearchDepartments_01 extends TestBase {
 					searchResults.verifyIfPreviousPaginationWork(keyword);
 				
 				} else {
-					// Verify all books containing keyword	
-					Logger.logInfo("Verify all books containing keyword '" + keyword + "'");
-					searchResults.verifyIfAllBooksNameContains(keyword);
 					
 					// Verify there is no button Next display on Paging area
 					check = searchResults.checkIfNextButtonDisplay();

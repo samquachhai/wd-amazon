@@ -18,3 +18,6 @@ The framework allows to run parallel test with testng xml suites and maven-suref
 
 ## ExtentReports Report
 - Generates HTML reports at project directory: `/extent-report/`
+
+## TestNG suites
+- The TestNG suites directory: `/test-suites/`

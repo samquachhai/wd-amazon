@@ -63,7 +63,7 @@ public class SearchDepartments_02 extends TestBase {
 			searchBar.searchDepartments("Books", keyword);
 				
 			// If no results message display
-			String expectNoResultMessage = "No results for " + keyword + " in Books";
+			String expectNoResultMessage = "No results for";
 			
 			boolean check = searchResults.checkIfNoResultsMessageDisplay(expectNoResultMessage);
 			

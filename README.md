@@ -1,4 +1,4 @@
-# wd-openweather
+# wd-amazon
 > The project is used for testing amazon.com web site 
 
 
@@ -44,21 +44,32 @@
 
 ## Usage
 - Clone the project from [GitHub](https://github.com/samquachhai/wd-amazon.git) to local directory
-`git clone https://github.com/samquachhai/wd-amazon.git`
+```javascript
+git clone https://github.com/samquachhai/wd-amazon.git
+```
 
 - Go to the directory 
-`cd wd-amazon`
+```javascript
+cd wd-amazon
+```
 
 - Clean up project files: 
-`mvn clean`
+```javascript
+mvn clean
+```
 
 - Run compile project : 
-`mvn test-compile`
+```javascript
+mvn test-compile
+```
 
 - Run test with given suite name under folder test-suites (e.g. SearchDepartments_All.xml) 
-`mvn test -DsuiteXmlFile=SearchDepartments_02.xml`
+```javascript
+mvn test -DsuiteXmlFile=SearchDepartments_02.xml
+```
 
-The ExtentReports test report is generated under /extent-report directory. [Sample ExtentReports](./img/sample-extent-reports.png)
+- The ExtentReports test report is generated under /extent-report directory. 
+![Sample Reports](./img/sample-extent-reports.png)
 
 
 ## Continuous Integration

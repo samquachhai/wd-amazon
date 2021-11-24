@@ -13,6 +13,7 @@ import com.aventstack.extentreports.Status;
  * 
  */
 public class Logger {
+	static final String SCREENTSHOTS_DIR = System.getProperty("user.dir") + "/screenshots/";
 	
 	/**
 	 * This method is intended to log an event with Status.INFO and details in the current thread's ExtendReporter
@@ -142,7 +143,7 @@ public class Logger {
 		String screenShotPath = "";
 		try {
 			String path = WebDrivers.captureScreenshot(
-					UUID.randomUUID().toString(), "screenshots");
+					UUID.randomUUID().toString(), SCREENTSHOTS_DIR);
 			
 
 			screenShotPath = "<br/><a href=\"" + path

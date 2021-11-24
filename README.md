@@ -31,7 +31,7 @@
 - Maven builds a project using its project object model (POM) and a set of plugins
 
 
-## Project Struture
+## Project Structure
 ![Project structure](./img/project-structure.png)
 
 

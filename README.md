@@ -32,7 +32,7 @@
 
 
 ## Project Struture
-![Project structure](./img/project-struture.png)
+![Project structure](./img/project-structure.png)
 
 
 ## Setup
@@ -87,6 +87,8 @@ pipeline {
 }
 ```
 
-- [Build Now](./img/jenkins-pipeline.png) 
+- Build Now
+![Build Now](./img/jenkins-pipeline.png)
+
 
 

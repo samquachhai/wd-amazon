@@ -231,6 +231,7 @@ public class WebDrivers {
 		// Run headless mode
 		if (mode.equalsIgnoreCase("headless")) {
 			options.addArguments("--headless");
+			options.addArguments("--disable-gpu");
 		}
 		driver = new FirefoxDriver(options);
 		

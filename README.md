@@ -63,9 +63,9 @@ mvn clean
 mvn test-compile
 ```
 
-- Run test with given suite name under folder test-suites (e.g. SearchDepartments_All.xml) 
+- Run test with given suite name under folder test-suites (e.g. SearchDepartments02.xml) 
 ```javascript
-mvn test -DsuiteXmlFile=SearchDepartments_02.xml
+mvn test -DsuiteXmlFile=SearchDepartments02.xml
 ```
 
 - The ExtentReports test report is generated under /extent-report directory. 
@@ -85,7 +85,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git branch: 'main', url: 'https://samquachhai@github.com/samquachhai/wd-amazon.git'
+                git branch: 'main', url: 'https://github.com/samquachhai/wd-amazon.git'
     
                 bat label: 'Run mvn clean', script: 'mvn clean'
     

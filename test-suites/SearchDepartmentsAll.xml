@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="SearchDepartments_All" >
+<suite name="SearchDepartmentsAll" >
   	<suite-files>
-        <suite-file path="SearchDepartments_01.xml" />
-        <suite-file path="SearchDepartments_02.xml" />
+        <suite-file path="SearchDepartments01.xml" />
+        <suite-file path="SearchDepartments02.xml" />
     </suite-files>
 </suite> <!-- Suite -->
 

@@ -10,10 +10,12 @@ import org.openqa.selenium.By;
 import web.base.PageObject;
 import web.utils.Logger;
 
+/**
+ * SearchBar
+ * 
+ */
 public class SearchBar extends PageObject {
 
-	public static int timer = 10;
-		
 	// Page elements locators
 	By searchDropdownCard = By.xpath("//*[@id='nav-search-dropdown-card']");
 	By searchDropdownBox = By.xpath("//*[@id='nav-search-dropdown-card']//div[contains(@class, 'nav-sprite')]//select");
@@ -22,7 +24,9 @@ public class SearchBar extends PageObject {
 	By searchDropdownLabel = By.xpath("//span[@id='nav-search-label-id']");
 	
     // Constructor
-    public SearchBar() {}
+    public SearchBar() {
+    	super();
+    }
     
     /**
 	 * This method is intended to search information from given departments area
@@ -31,7 +35,7 @@ public class SearchBar extends PageObject {
 	 * @param keyword the keyword to search for (E.g. apple)
 	 * 
 	 */
-    public void searchDepartments(String department, String keyword) {
+    public void searchDepartments(final String department, final String keyword) {
         // Select department area
 		selectSearchDepartmentsDropdown(department);
     	
@@ -48,7 +52,7 @@ public class SearchBar extends PageObject {
 	 * @param keyword the keyword to search for (E.g. apple)
 	 * 
 	 */
-    public void enterSearchTextBox(String keyword) {
+    public void enterSearchTextBox(final String keyword) {
     	Logger.logInfo("Enter '" + keyword + "' in the Search box on Search Bar");
     	setText(searchTextBox, keyword); 
     }
@@ -68,7 +72,7 @@ public class SearchBar extends PageObject {
      * 
      * @param text the visible text to match against
    	 */
-    public void selectSearchDepartmentsDropdown(String text) {
+    public void selectSearchDepartmentsDropdown(final String text) {
  
     	Logger.logInfo("Select '" + text + "' from the Departments dropdown");
     	// Open list item

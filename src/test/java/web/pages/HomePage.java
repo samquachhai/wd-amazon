@@ -1,8 +1,3 @@
-/*
- * HomePage class
- *
- */
-
 package web.pages;
 
 import org.openqa.selenium.By;
@@ -10,20 +5,22 @@ import org.openqa.selenium.By;
 import web.base.PageObject;
 import web.utils.Constants;
 
+/**
+ * HomePage
+ * 
+ */
 public class HomePage extends PageObject {
 
-	public static int timer = 10;	
-	
 	// Page elements locators
 	final By yourAccoutLink = By.xpath("//*[@id='nav-link-accountList']");
 	final By signInLink = By.xpath("//*[@id='nav-signin-tooltip']/a/span");
-	final By languageSettingsLink = By.xpath("//*[@id='icp-nav-flyout']/span");
-    
+	final By languageSettings = By.xpath("//*[@id='icp-nav-flyout']/span");
     
     // Constructor
-    public HomePage() {}
-    
- 
+	public HomePage () {
+		super();
+	}
+	
     /**
    	 * This method is intended to navigate to Home page
      * 
@@ -50,7 +47,7 @@ public class HomePage extends PageObject {
    	 */
 
     public void navigateToLanguageSettingsPage(){
-        clickUsingActions(languageSettingsLink);
+        clickUsingActions(languageSettings);
         waitUntilPageLoad();
     }
     

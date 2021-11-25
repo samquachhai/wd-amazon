@@ -8,8 +8,8 @@
 	
 	<test name="SearchDepartmentsAll">
 		<classes>
-			<class name="web.tests.search.SearchDepartments_01" />
-			<class name="web.tests.search.SearchDepartments_02" /> 
+			<class name="web.tests.search.SearchDepartments01" />
+			<class name="web.tests.search.SearchDepartments02" /> 
 
 		</classes>
 	</test>

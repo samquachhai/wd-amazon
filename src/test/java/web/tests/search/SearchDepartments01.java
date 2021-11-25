@@ -16,11 +16,12 @@ import web.utils.Logger;
  * The test to verify result list is paginated if there are more than 16 items
  * 
  */
-public class SearchDepartments_01 extends TestBase {
+public class SearchDepartments01 extends TestBase {
 	
-	// Constructor
-	public SearchDepartments_01() {}
-	
+	/**
+	 * Data provider for test
+	 * 
+	 */
 	@DataProvider(name="books")
 	public Object[][] passData() throws IOException, ParseException
 	{
@@ -35,10 +36,15 @@ public class SearchDepartments_01 extends TestBase {
 	//   iii. Book Language: English
 	//   b. The Result displays exactly 16 items on each page.
 
+	/**
+	 * The test to verify result list is paginated if there are more than 16 items
+	 * 
+	 * @param keyword the keyword to search for
+	 */
 	@Test(dataProvider = "books",
 			groups = { "smoke"},
 			description = "Verify result list is paginated if there are more than 16 items")
-	public void searchDepartments_01(String keyword) throws Exception {
+	public void searchDepartments01(final String keyword) throws Exception {
 		
 		SearchBar searchBar = new SearchBar();
 		SearchResults searchResults = new SearchResults();

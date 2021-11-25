@@ -20,10 +20,12 @@ import org.testng.TestException;
 import web.base.PageObject;
 import web.utils.Logger;
 
+/**
+ * SearchResults
+ * 
+ */
 public class SearchResults extends PageObject {
 
-	public static int timer = 10;
-	
 	// Page elements locators
 	By searchUpperResultInfoBar = By.xpath("//*[@id='search']//span[contains(@cel_widget_id,'UPPER-RESULT_INFO_BAR')]//div[@class='sg-col-inner']//span");
 	By searchUpperResultInfoBar1 = By.xpath("//*[@id='search']//span[contains(@cel_widget_id,'UPPER-RESULT_INFO_BAR')]//div[@class='sg-col-inner']//span[1]");
@@ -42,7 +44,9 @@ public class SearchResults extends PageObject {
 	By resultSortListPublication = By.xpath("//*[@id='search']//span[contains(@cel_widget_id, 'MAIN-SEARCH_RESULTS')]//div[@class='a-section']/div[2]/div[2]//h2/parent::div[1]/div/div");
 	
 	// Constructor
-    public SearchResults() {}
+    public SearchResults() {
+    	super();
+    }
        
     /**
 	 * This method is intended to get the first book name displaying on top current result page
@@ -170,7 +174,7 @@ public class SearchResults extends PageObject {
    	 * @param expect the message to compare
      * 
    	 */
-    public boolean checkIfNoResultsMessageDisplay(String expect) {
+    public boolean checkIfNoResultsMessageDisplay(final String expect) {
     	try {
     		// Get current no result message
     		String actual = getSearchNoResultMessage();
@@ -206,12 +210,12 @@ public class SearchResults extends PageObject {
    	 * @param text matching text to compare
      * 
    	 */
-    public void verifyIfAllBooksNameContains(String text) {
+    public void verifyIfAllBooksNameContains(final String text) {
     	// Get all books display on current page
     	boolean check = true;
     	List<String> books = getListBooksNameOnCurrentResultsPage();
     	
-    	for(String book: books) {
+    	for(final String book: books) {
     		if(!book.toLowerCase().contains(text.toLowerCase())
     			&& !text.toLowerCase().contains(book.toLowerCase())) {
     			// there is book name not containing text
@@ -229,7 +233,7 @@ public class SearchResults extends PageObject {
    	 * @param text matching text to compare
      * 
    	 */
-    public void verifyIfNextPaginationWork(String text) {
+    public void verifyIfNextPaginationWork(final String text) {
     	// Get current paging state
     	int currentPageIndex = Integer.parseInt(getCurrentSelectPageIndex());
     	String currentFirstBookOnTop = getFirstBookNameOnTopOfCurrentResultPage();
@@ -276,7 +280,7 @@ public class SearchResults extends PageObject {
    	 * @param text matching text to compare
      * 
    	 */
-    public void verifyIfPreviousPaginationWork(String text) {
+    public void verifyIfPreviousPaginationWork(final String text) {
     	// Get current paging state
     	int currentPageIndex = Integer.parseInt(getCurrentSelectPageIndex());
     	String currentFirstBookOnTop = getFirstBookNameOnTopOfCurrentResultPage();
@@ -340,7 +344,7 @@ public class SearchResults extends PageObject {
      * 
      * @param text the visible text to match against
    	 */
-    public void selectSortResultsDropdown(String text) {
+    public void selectSortResultsDropdown(final String text) {
  
     	Logger.logInfo("Select '" + text + "' from the Sort Results dropdown");
     	
@@ -395,8 +399,8 @@ public class SearchResults extends PageObject {
     public void verifyListBooksPublicationDateSortedDescending() {
     	List<String> datestring = getListBooksPublicationDateOnCurrentResultsPage();
     	
-    	DateFormat df = new SimpleDateFormat("MMM dd, yyyy");
-		List<Date> dateList = new ArrayList<Date>();
+    	final DateFormat df = new SimpleDateFormat("MMM dd, yyyy");
+		final List<Date> dateList = new ArrayList<Date>();
 		datestring.forEach((String d) -> {
 			try {
 				dateList.add(df.parse(d));

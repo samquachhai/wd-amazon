@@ -18,11 +18,12 @@ import web.utils.JsonReader;
  * The test to verify result list can be sorted on demand
  * 
  */
-public class SearchDepartments_02 extends TestBase {
+public class SearchDepartments02 extends TestBase {
 	
-	// Constructor
-	public SearchDepartments_02() {}
-	
+	/**
+	 * Data provider for test
+	 * 
+	 */
 	@DataProvider(name="books")
 	public Object[][] passData() throws IOException, ParseException
 	{
@@ -38,10 +39,15 @@ public class SearchDepartments_02 extends TestBase {
 	//     iv. Change sort option to Publication date
 	//   b. The Result is sorted by Publication date
 
+	/**
+	 * The test to verify result list can be sorted on demand
+	 * 
+	 * @param keyword the keyword to search for
+	 */
 	@Test(dataProvider = "books",
 			groups = { "smoke"},
 			description = "Verify result list can be sorted on demand")
-	public void searchDepartments_02(String keyword) throws Exception {
+	public void searchDepartments02(final String keyword) throws Exception {
 		
 		SearchBar searchBar = new SearchBar();
 		SearchResults searchResults = new SearchResults();

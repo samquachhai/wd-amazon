@@ -1,8 +1,3 @@
-/*
- * HomePage class
- *
- */
-
 package web.pages;
 
 import org.openqa.selenium.By;
@@ -10,15 +5,19 @@ import org.openqa.selenium.By;
 import web.base.PageObject;
 import web.utils.Logger;
 
+/**
+ * LanguageSettingsPage
+ * 
+ */
 public class LanguageSettingsPage extends PageObject {
 
-	public static int timer = 10;	
-	
 	final By saveChangesButton = By.xpath("//*[@id='icp-btn-save']");
 	final By languageLabel = By.xpath("//*[@id='customer-preferences']//form//div[@data-a-input-name='LOP']/label/span");
     
     // Constructor
-    public LanguageSettingsPage() {}
+    public LanguageSettingsPage() {
+    	super();
+    }
     
  
     /**
@@ -26,7 +25,7 @@ public class LanguageSettingsPage extends PageObject {
    	 * 
      * @param languageCountryCode the language country code (e.g. EN)
    	 */
-    public void clickPreferLanguage(String languageCountryCode) {
+    public void clickPreferLanguage(final String languageCountryCode) {
     	Logger.logInfo("Click prefer language '" + languageCountryCode + "' on Language Settings page");
     	selectListItemContainsText(languageLabel, languageCountryCode);
     	
@@ -48,7 +47,7 @@ public class LanguageSettingsPage extends PageObject {
      * 
      * @param languageCountryCode the language country code (e.g. EN)
    	 */
-    public void selectAndSavePreferLanguage(String languageCountryCode){
+    public void selectAndSavePreferLanguage(final String languageCountryCode){
     	clickPreferLanguage(languageCountryCode);
     	clickSaveChangesButton();
         waitUntilPageLoad();

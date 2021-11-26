@@ -3,7 +3,7 @@
 <suite name="SearchDepartments01" >
   	<parameter name="browsers" value="chrome" />  		<!-- firefox , chrome -->		
 	<parameter name="mode" value="headless" />  			<!-- headed , headless -->
-	<parameter name="testsuite" value="SearchDepartments_01" />
+	<parameter name="testsuite" value="SearchDepartments01" />
   	
   	<test name="SearchDepartments01">
 		<classes>

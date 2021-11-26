@@ -126,7 +126,7 @@ public final class Logger {
 	 * @param details the details description 
 	 */
 	public static void logReport(final Status status, final String details) {
-		ExtentTestReporter.testReporters.get().log(status, details);
+		ExtentTestReporter.testReporters.get().log(status, "'" + details + "'");
 	}
 
 	/**

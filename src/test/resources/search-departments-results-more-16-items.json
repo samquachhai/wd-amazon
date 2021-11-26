@@ -2,9 +2,6 @@
 	"Books": [
 		{
 			"name" : "apple"
-		},
-		{
-			"name" : "InvalidBook"
 		}
 	]
 }

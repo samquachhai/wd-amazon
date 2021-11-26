@@ -4,6 +4,9 @@
   	<suite-files>
         <suite-file path="SearchDepartments01.xml" />
         <suite-file path="SearchDepartments02.xml" />
+        <suite-file path="SearchDepartments03.xml" />
+        <suite-file path="SearchDepartments04.xml" />
+        <suite-file path="SearchDepartments05.xml" />
     </suite-files>
 </suite> <!-- Suite -->
 

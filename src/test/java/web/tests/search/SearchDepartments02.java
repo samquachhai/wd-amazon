@@ -1,9 +1,7 @@
 package web.tests.search;
 
 import java.io.IOException;
-
 import org.json.simple.parser.ParseException;
-
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -11,11 +9,11 @@ import web.actions.SearchActions;
 import web.base.TestBase;
 import web.pages.SearchBar;
 import web.pages.SearchResults;
-import web.utils.Logger;
 import web.utils.JsonReader;
+import web.utils.Logger;
 
 /**
- * The test to verify result list can be sorted on demand
+ * The test to verify result list is paginated if there are more than 16 items
  * 
  */
 public class SearchDepartments02 extends TestBase {
@@ -27,78 +25,60 @@ public class SearchDepartments02 extends TestBase {
 	@DataProvider(name="books")
 	public Object[][] passData() throws IOException, ParseException
 	{
-		return JsonReader.getData("src/test/resources/search-departments.json", "Books", 1);
+		return JsonReader.getData("src/test/resources/search-departments-results-less-16-items.json", "Books", 1);
 
 	}
 	
-	// 2. Verify result list can be sorted on demand
+	// 1. Verify result list is paginated if there are more than 16 items
 	//   a. Perform a search with:
-	//      i. Department: Books
-	//     ii. Keyword: apple
-	//    iii. Book Language: English
-	//     iv. Change sort option to Publication date
-	//   b. The Result is sorted by Publication date
+	//     i. Department: Books
+	//    ii. Keyword: apple
+	//   iii. Book Language: English
+	//   b. The Result displays exactly 16 items on each page.
 
 	/**
-	 * The test to verify result list can be sorted on demand
+	 * The test to verify result list is not paginated if there are more than 16 items
 	 * 
 	 * @param keyword the keyword to search for
 	 */
 	@Test(dataProvider = "books",
 			groups = { "smoke"},
-			description = "Verify result list can be sorted on demand")
-	public void searchDepartments02(final String keyword) throws Exception {
+			description = "Verify result list is not paginated if there are less than 16 items")
+	public void searchDepartments02(final String keyword) {
 		
-		SearchBar searchBar = new SearchBar();
-		SearchResults searchResults = new SearchResults();
-		SearchActions searchActions = new SearchActions();
+		final SearchBar searchBar = new SearchBar();
+		final SearchResults searchResults = new SearchResults();
+		final SearchActions searchActions = new SearchActions();
 		
 		try {
 			
-			//   a. Perform a search with:
-			//      i. Department: Books
-			//     ii. Keyword: apple
-			//    iii. Book Language: English
-			//     iv. Change sort option to Publication date
-			
+			// a. Perform a search with:
+			//     i. Department: Books
+			//    ii. Keyword: apple
+			//   iii. Book Language: English
 			Logger.logInfo("a. Perform a search with department 'Books'"
 					+ " with keyword '" + keyword + "'" 
 					+ " and book language 'EN'");
 			searchActions.searchPreparation("EN");	
 			
 			searchBar.searchDepartments("Books", keyword);
-				
-			// If no results message display
-			String expectNoResultMessage = "No results for";
 			
-			boolean check = searchResults.checkIfNoResultsMessageDisplay(expectNoResultMessage);
+			// If there are less than 16 items displays on result list
+			final boolean checkMultipleResults = searchResults.checkIfMultipleResultsPaginationDisplay();
+			final boolean checkNoResults = searchResults.checkIfNoResultsMessageDisplay("No results for");
 			
 			
-			if(!check) {
-				// If searching having results found
-				searchResults.selectSortResultsDropdown("Publication Date"); 
-				
-				// Verify Publication Date is selected and display on Sort dropdown
-				Logger.logInfo("Verify Publication Date is selected and display on Sort dropdown");
-				
-				String selectedSortResultsDropdownOption = searchResults.getSelectedSortResultsDropdownOption();			
-				
-				Logger.assertExtentEquals(selectedSortResultsDropdownOption, "Publication Date");
-				
-				// Verify list books Publication date is sorted descending by default
-				Logger.logInfo("Verify list books Publication date is sorted descending by default");
-				
-				searchResults.verifyListBooksPublicationDateSortedDescending();
-							
-			} else {
-			    
-				// If searching having no result found
-				Logger.assertExtentTrue(check, expectNoResultMessage + " displays on Result Info area");
-				
-				// Verify there is no Sort dropdown displays on Results page
-				check = searchResults.checkIfSortDropdownDisplay();
-				Logger.assertExtentFalse(check, " Sort dropdown does not display on Results page");
-			}
+			boolean check = (checkMultipleResults == checkNoResults) ? true : false;
+			
+			Logger.assertExtentTrue(check, "There are less than 16 items displays on result list");
+						
+			// Verify there is no button Next display on Paging area
+			check = searchResults.checkIfNextButtonDisplay();
+			Logger.assertExtentFalse(check, " Button Next does not display on Paging area");
+			
+			// Verify there is no button Previous on Paging area
+			check = searchResults.checkIfPreviousButtonDisplay();
+			Logger.assertExtentFalse(check, " Button Previous does not display on Paging area");
 			
 			// Capture screenshot at last step
 			Logger.logInfoWithScreenshot("");
@@ -106,8 +86,6 @@ public class SearchDepartments02 extends TestBase {
 		} catch (Exception ex) {
 			Logger.logExceptionFail(ex.getMessage());
 			
-		} finally {
-			closeBrowser();
 		}
 	}
 	

@@ -16,7 +16,7 @@ import web.utils.Logger;
  * The test to verify result list is paginated if there are more than 16 items
  * 
  */
-public class SearchDepartments01 extends TestBase {
+public class SearchDepartments03 extends TestBase {
 	
 	/**
 	 * Data provider for test
@@ -25,7 +25,7 @@ public class SearchDepartments01 extends TestBase {
 	@DataProvider(name="books")
 	public Object[][] passData() throws IOException, ParseException
 	{
-		return JsonReader.getData("src/test/resources/search-departments-results-more-16-items.json", "Books", 1);
+		return JsonReader.getData("src/test/resources/search-departments-no-results.json", "Books", 1);
 
 	}
 	
@@ -37,14 +37,15 @@ public class SearchDepartments01 extends TestBase {
 	//   b. The Result displays exactly 16 items on each page.
 
 	/**
-	 * The test to verify result list is paginated if there are more than 16 items
+	 * The test to verify notice message displays 
+	 * when searching having no result found
 	 * 
 	 * @param keyword the keyword to search for
 	 */
 	@Test(dataProvider = "books",
 			groups = { "smoke"},
-			description = "Verify result list is paginated if there are more than 16 items")
-	public void searchDepartments01(final String keyword) {
+			description = "Verify notice message displays when searching having no result found")
+	public void searchDepartments03(final String keyword) {
 		
 		final SearchBar searchBar = new SearchBar();
 		final SearchResults searchResults = new SearchResults();
@@ -63,32 +64,27 @@ public class SearchDepartments01 extends TestBase {
 			
 			searchBar.searchDepartments("Books", keyword);
 			
-			// If there are more than 16 items displays on result list
-			final boolean check = searchResults.checkIfMultipleResultsPaginationDisplay();
-			Logger.assertExtentTrue(check, "There are more than 16 items displays on result list");
+			// If no results message display
+			boolean check = searchResults.checkIfNoResultsMessageDisplay("No results for");
 						
-			// Verify all books containing keyword	
-			Logger.logInfo("Verify all books containing keyword '" + keyword + "'");
+			// If searching having no result found
+			Logger.assertExtentTrue(check, "No results for " + keyword +" displays on Result Info area");
 			
-			searchResults.verifyIfAllBooksNameContains(keyword);
+			// Verify there is no button Next display on Paging area
+			check = searchResults.checkIfNextButtonDisplay();
+			Logger.assertExtentFalse(check, " Button Next does not display on Paging area");
 			
-			// Verify moving next paging page
-			Logger.logInfo("Verify moving next paging page");
+			// Verify there is no button Previous on Paging area
+			check = searchResults.checkIfPreviousButtonDisplay();
+			Logger.assertExtentFalse(check, " Button Previous does not display on Paging area");
 			
-			searchResults.verifyIfNextPaginationWork(keyword);
-			
-			// Verify moving previous paging page
-			Logger.logInfo("Verify moving previous paging page");
-			
-			searchResults.verifyIfPreviousPaginationWork(keyword);
-		
 			// Capture screenshot at last step
 			Logger.logInfoWithScreenshot("");
 			
 		} catch (Exception ex) {
 			Logger.logExceptionFail(ex.getMessage());
 			
-		}
+		} 
 	}
 	
 }

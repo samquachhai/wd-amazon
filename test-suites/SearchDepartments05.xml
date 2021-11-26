@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="SearchDepartments02" >
+<suite name="SearchDepartments05" >
   	<parameter name="browsers" value="chrome" />  		<!-- firefox , chrome -->		
 	<parameter name="mode" value="headless" />  			<!-- headed , headless -->
-	<parameter name="testsuite" value="SearchDepartments02" />
+	<parameter name="testsuite" value="SearchDepartments05" />
   	
-  	<test name="SearchDepartments02">
+  	<test name="SearchDepartments05">
 		<classes>
-      		<class name="web.tests.search.SearchDepartments02" /> 
+      		<class name="web.tests.search.SearchDepartments05" /> 
 
     	</classes>
   	</test> <!-- Test -->

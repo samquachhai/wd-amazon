@@ -26,7 +26,7 @@ public class HomePage extends PageObject {
      * 
    	 */
     public void navigateToHomePage() {
-        navigateToURL(Constants.URL);
+        navigateToUrl(Constants.URL);
         waitUntilPageLoad();
         
     }
@@ -37,7 +37,7 @@ public class HomePage extends PageObject {
    	 */
 
     public void navigateToSignInPage(){
-        clickUsingActions(yourAccoutLink);
+        clickUsingActions(this.yourAccoutLink);
         waitUntilPageLoad();
     }
     
@@ -47,7 +47,7 @@ public class HomePage extends PageObject {
    	 */
 
     public void navigateToLanguageSettingsPage(){
-        clickUsingActions(languageSettings);
+        clickUsingActions(this.languageSettings);
         waitUntilPageLoad();
     }
     
@@ -56,7 +56,7 @@ public class HomePage extends PageObject {
      * 
    	 */
     public void signOutWithSignOutLink(){
-        navigateToURL(Constants.SIGNOUT_URL);
+        navigateToUrl(Constants.SIGNOUT_URL);
         waitUntilPageLoad();
     }
 }

@@ -193,7 +193,7 @@ public class WebDrivers {
 			options.addArguments("--disable-gpu");
 		}
 		
-		DesiredCapabilities cap = DesiredCapabilities.chrome();
+		DesiredCapabilities cap = new DesiredCapabilities();
 		cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 		cap.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR,
 				UnexpectedAlertBehaviour.ACCEPT);
@@ -218,9 +218,9 @@ public class WebDrivers {
 		options.addPreference("browser.startup.homepage", "about:blank");
 		options.addPreference("browser.startup.homepage_override.mstone",
 				"ignore");
-		DesiredCapabilities cap = DesiredCapabilities.firefox();
+		DesiredCapabilities cap = new DesiredCapabilities();
 		cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-		cap.setCapability(CapabilityType.BROWSER_NAME, "firefox");
+		cap.setCapability(CapabilityType.BROWSER_NAME, "Firefox");
 		options.merge(cap);
 
 		// Run incognito mode
